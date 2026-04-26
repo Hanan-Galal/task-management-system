@@ -1,0 +1,1 @@
+{"version":3,"file":"ProjectRules.js","sourceRoot":"","sources":["../../../src/scripts/store/ProjectRules.ts"],"names":[],"mappings":"AAEA,MAAM,OAAO,YAAY;IAErB,YAAmB,EAAU,EAAS,KAAa,EAAS,WAAmB,EAAS,MAAqB;QAA1F,OAAE,GAAF,EAAE,CAAQ;QAAS,UAAK,GAAL,KAAK,CAAQ;QAAS,gBAAW,GAAX,WAAW,CAAQ;QAAS,WAAM,GAAN,MAAM,CAAe;QACzG,IAAI,CAAC,EAAE,GAAG,EAAE,CAAC;IACjB,CAAC;CACJ"}

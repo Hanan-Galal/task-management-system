@@ -1,0 +1,1 @@
+{"version":3,"file":"project.d.ts","sourceRoot":"","sources":["../../../src/scripts/components/project.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,IAAI,EAAE,MAAM,WAAW,CAAC;AAIjC,qBAAa,OAAQ,SAAQ,IAAI,CAAC,cAAc,CAAC;IACjB,OAAO,CAAC,OAAO;gBAA/B,MAAM,EAAE,MAAM,EAAU,OAAO,EAAE,GAAG;IAMhD,SAAS;IAqBT,aAAa;IAMb,OAAO,CAAC,WAAW;CAuBtB"}
