@@ -1,0 +1,19 @@
+@use "../vars/_variables" as *;
+@use "../vars/_radius" as *;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Inter', sans-serif, Tahoma, Geneva, Verdana; // ضفت لك فونت Inter بيدي شكل أشيك
+  color: $text-main; // التعديل هنا: شيلنا الـ ( -c )
+  background-color: $bg-dark; // عشان نضمن إن الخلفية غامقة من البداية
+}

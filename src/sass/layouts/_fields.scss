@@ -1,0 +1,66 @@
+@use "../vars/_variables" as *;
+@use "../vars/_radius" as *;
+
+form {
+    background: $glass-bg;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid $glass-border;
+    padding: 30px;
+    width: 100%;
+    border-radius: $large-r;
+    box-shadow: $shadow-lg;
+    transition: transform 0.3s ease;
+
+    &:hover { transform: translateY(-5px); }
+
+    .form-control {
+        margin-bottom: 20px;
+
+        label {
+            color: $text-muted;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input, select {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid $glass-border;
+            border-radius: $small-r;
+            padding: 12px 15px;
+            color: $text-main;
+            font-size: 15px;
+            transition: all 0.3s ease;
+
+            &:focus {
+                background: rgba(255, 255, 255, 0.07);
+                border-color: #667eea;
+                outline: none;
+                box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+            }
+        }
+    }
+
+    button {
+        background: $primary-gradient;
+        color: white;
+        border: none;
+        padding: 14px;
+        border-radius: $medium-r;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+
+        &:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+    }
+}

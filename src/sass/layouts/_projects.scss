@@ -1,0 +1,50 @@
+@use '../vars/_variables' as *;
+@use "../vars/_radius" as *;
+
+.projects {
+    min-width: 320px;
+    background: $glass-bg;
+    backdrop-filter: blur(8px);
+    border: 1px solid $glass-border;
+    border-radius: $medium-r;
+    padding: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.drag-over {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: #667eea;
+        transform: scale(1.02);
+    }
+
+    .title-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid $glass-border;
+        padding-bottom: 10px;
+
+        .title {
+            color: $text-main;
+            font-size: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .delete-list {
+            background: none;
+            border: none;
+            color: $text-muted;
+            cursor: pointer;
+            font-size: 18px;
+            &:hover { color: $error-c; }
+        }
+    }
+
+    ul {
+        min-height: 150px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+}

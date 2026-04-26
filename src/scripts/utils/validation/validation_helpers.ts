@@ -1,0 +1,39 @@
+import type { validation } from "./validation_type.js";
+
+export const assignValidationInputs = (titleValue: string, descValue: string): [validation, validation] => {
+    const titleInputRule: validation = {
+        type: 'title',
+        required: true,
+        minLength: 3,
+        maxLength: 50,
+        value: titleValue
+    };
+
+    const descInputRule: validation = {
+        type: 'desc',
+        required: true,
+        minLength: 10,
+        maxLength: 200,
+        value: descValue
+    };
+
+    return [titleInputRule, descInputRule];
+};
+
+export const handleValidationErrors = (InputRule: validation): string => {
+    let errorMessage = '';
+
+    if (InputRule.required && InputRule.value.trim().length === 0) {
+        errorMessage += `This field ${InputRule.type} is required.\n`;
+    }
+
+    if (InputRule.minLength && InputRule.minLength > InputRule.value.trim().length) {
+        errorMessage += `This field ${InputRule.type} must be at least ${InputRule.minLength} characters`;
+    }
+
+    if (InputRule.maxLength && InputRule.maxLength < InputRule.value.trim().length) {
+        errorMessage += `This field ${InputRule.type} must be at most ${InputRule.maxLength} characters`;
+    }
+
+    return errorMessage;
+};
