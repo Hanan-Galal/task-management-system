@@ -1,63 +1,63 @@
-import { projectState } from "../store/ProjectState.js";
-import { base } from "./Base.js";
-import { autoBind } from "./autoBind.js";
-import { assignValidationInputs, handleValidationErrors } from "../utils/validation/validation_helpers.js";
+import { projectState }  from '../store/ProjectState.js';
+import { base }           from './Base.js';
+import { autoBind }       from './autoBind.js';
+import { Popup }          from './Popup.js';
 
-export class Project extends base<HTMLDivElement> {
-    constructor(hostId: string, private project: any) {
-        super('project-item', hostId, false, project.id);
-        this.renderContent();
-        this.configure();
+
+export class Project extends base<HTMLLIElement> {
+
+    constructor(
+        hostId: string,
+        private readonly task: any,
+        private readonly popup: Popup,          
+    ) {
+        super('project-item', hostId, false, task.id);
+        this._renderContent();
+        this._bindEvents();
     }
 
-    configure() {
-        const deleteBtn = this._element.querySelector('.delete') as HTMLElement;
-        if (deleteBtn) {
-            deleteBtn.onclick = () => { 
-                if (confirm('Are you sure you want to delete this task?')) {
-                    projectState.deleteProjects(this.project.id);
-                }
-            };
-        }
+    // ── Private ───────────────────────────────────────────────────────
 
-        const editBtn = this._element.querySelector('.edit') as HTMLElement;
-        if (editBtn) {
-            editBtn.onclick = this.editHandler;
-        }
-
-        this._element.addEventListener('dragstart', (e) => {
-            e.dataTransfer!.setData('text/plain', this.project.id);
-            e.dataTransfer!.effectAllowed = 'move';
-        });
+    private _renderContent(): void {
+        this._element.querySelector('h2')!.textContent = this.task.title;
+        this._element.querySelector('p')! .textContent = this.task.description;
     }
 
-    renderContent() {
-        this._element.querySelector('h2')!.textContent = this.project.title;
-        this._element.querySelector('p')!.textContent = this.project.description;
+    private _bindEvents(): void {
+        // Delete
+        this._element.querySelector<HTMLButtonElement>('.delete')!
+            .addEventListener('click', this._onDelete);
+
+        // Edit :open shared popup
+        this._element.querySelector<HTMLButtonElement>('.edit')!
+            .addEventListener('click', this._onEdit);
+
+        // Drag & drop
+        this._element.addEventListener('dragstart', this._onDragStart);
+        this._element.addEventListener('dragend',   this._onDragEnd);
     }
 
     @autoBind
-    private editHandler() {
-        const newTitle = prompt('Edit Title:', this.project.title);
-        const newDesc = prompt('Edit Description:', this.project.description);
-
-        if (newTitle !== null && newDesc !== null) {
-            const titleValue = newTitle.trim();
-            const descValue = newDesc.trim();
-
-            if (titleValue.length > 0 && descValue.length > 0) {
-                const [titleRule, descRule] = assignValidationInputs(titleValue, descValue);
-                const error = handleValidationErrors(titleRule) || handleValidationErrors(descRule);
-
-                if (error) {
-                    alert(error);
-                    return;
-                }
-
-                projectState.updateTask(this.project.id, titleValue, descValue);
-            } else {
-                alert('Title and Description cannot be empty!');
-            }
+    private _onDelete(): void {
+        if (confirm('Are you sure you want to delete this task?')) {
+            projectState.deleteProjects(this.task.id);
         }
+    }
+
+    @autoBind
+    private _onEdit(): void {
+        this.popup.open(this.task.id, this.task.title, this.task.description);
+    }
+
+    @autoBind
+    private _onDragStart(e: DragEvent): void {
+        e.dataTransfer!.setData('text/plain', this.task.id);
+        e.dataTransfer!.effectAllowed = 'move';
+        this._element.classList.add('dragging');
+    }
+
+    @autoBind
+    private _onDragEnd(): void {
+        this._element.classList.remove('dragging');
     }
 }

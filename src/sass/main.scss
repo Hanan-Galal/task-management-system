@@ -1,6 +1,30 @@
 @use "./layouts/_global.scss";
-@use"./layouts/_app.scss";
-@use"./layouts/_fields.scss";
-@use"./layouts/_projects.scss";
-@use"./layouts/_popup.scss";
-@use"./layouts/_project.scss";
+@use "./layouts/_app.scss";
+@use "./layouts/_fields.scss";
+@use "./layouts/_projects.scss";
+@use "./layouts/_popup.scss";
+@use "./layouts/_project.scss";
+
+#app {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  min-height: 600px;
+  padding: 20px;
+}
+
+.projects {
+  min-width: 300px;
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff0d;  
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.project-list {
+  min-height: 200px;
+  flex-grow: 1;
+}

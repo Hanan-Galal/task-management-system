@@ -1,14 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic tasks</title>
-<link rel="stylesheet" href="src/css/main.css">
-<script type="module" src="src/scripts/index.js"></script>
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
+    <!-- Forms  -->
     <template id="fields">
         <div id="forms-container">
             <form id="list-form">
@@ -18,13 +17,14 @@
             <hr>
             <form id="task-form">
                 <input id="task-title" type="text" placeholder="Task Title">
-                <input id="task-desc" type="text" placeholder="Description">
+                <input id="task-desc"  type="text" placeholder="Description">
                 <select id="task-list-select"></select>
                 <button type="submit">Add Task</button>
             </form>
         </div>
     </template>
 
+    <!-- ─── List column  -->
     <template id="list">
         <div class="projects">
             <header class="title-header">
@@ -35,10 +35,11 @@
         </div>
     </template>
 
+    <!-- ─── Task card  -->
     <template id="project-item">
         <li class="project" draggable="true">
             <h2 class="project_title"></h2>
-            <p class="project_desc"></p>
+            <p  class="project_desc"></p>
             <div class="project_icons">
                 <button class="edit">Edit</button>
                 <button class="delete">Delete</button>
@@ -46,6 +47,37 @@
         </li>
     </template>
 
+    <!-- ─── Edit Popup -->
+    <template id="popup_template">
+        <div class="popup_container" id="edit-popup" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+            <div class="popup">
+                <header class="popup_header">
+                    <h3 id="popup-title">Edit Task</h3>
+                    <button class="close" aria-label="Close popup">&times;</button>
+                </header>
+
+                <div class="content">
+                    <form id="edit-form" novalidate>
+                        <div class="field-group">
+                            <label for="edit-title">Title</label>
+                            <input id="edit-title" type="text" placeholder="Task title…" autocomplete="off">
+                        </div>
+                        <div class="field-group">
+                            <label for="edit-desc">Description</label>
+                            <input id="edit-desc" type="text" placeholder="Task description…" autocomplete="off">
+                        </div>
+                        <p class="popup_error" id="popup-error" role="alert" aria-live="polite"></p>
+                        <div class="popup_actions">
+                            <button type="button" class="btn-cancel">Cancel</button>
+                            <button type="submit"  class="btn-save">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </template>
+
     <div id="app"></div>
+    <script type="module" src="./scripts/index.js"></script>
 </body>
 </html>
